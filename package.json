@@ -5,10 +5,10 @@
   "main": "index.js",
   "repository": "git@github.com:StephenGrider/ReduxSimpleStarter.git",
   "scripts": {
-    "dev": "NODE_ENV=development node server.js",
+    "dev": "NODE_ENV=development node ./server/server.js",
     "clean": "rimraf dist",
     "build": "npm run clean && webpack -p --config ./webpack.config.js --progress",
-    "prod": "NODE_ENV=production node server.js",
+    "prod": "NODE_ENV=production node ./server/server.js",
     "heroku-postbuild": "npm run build"
   },
   "author": "",

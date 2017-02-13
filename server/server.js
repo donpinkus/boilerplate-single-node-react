@@ -40,7 +40,7 @@ if (process.env.NODE_ENV !== 'production') {
 	// Middleware that will intercept requests
 	const webpackDevMiddleware = require('webpack-dev-middleware');
 	// Our configuration file
-	const webpackConfig = require('./webpack.config.js');
+	const webpackConfig = require('../webpack.config.js');
 
 	// Tell express to use webpack middleware to use webpack, configured by our file.
 	// Webpack middleware catches relevant requests
