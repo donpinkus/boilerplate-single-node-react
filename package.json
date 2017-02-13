@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "NODE_ENV=development node ./server/server.js",
     "clean": "rimraf dist",
-    "build": "npm run clean && webpack -p --config ./webpack.config.js --progress",
+    "build": "npm run clean && webpack -p --config ./webpack.prod.config.js --progress",
     "prod": "NODE_ENV=production node ./server/server.js",
     "heroku-postbuild": "npm run build"
   },
@@ -29,6 +29,7 @@
     "body-parser": "^1.16.1",
     "css-loader": "^0.26.1",
     "express": "^4.14.0",
+    "extract-text-webpack-plugin": "^2.0.0-rc.3",
     "html-webpack-plugin": "^2.24.1",
     "jwt-simple": "^0.5.1",
     "lodash": "^3.10.1",

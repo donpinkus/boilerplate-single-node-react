@@ -8,12 +8,15 @@ const apiRoutes = require('./router.js');
 const config = require('./config.js');
 
 /* DB setup */
+const devMongoURI = 'mongodb://localhost/' + config.db_name;
+
 if (process.env.NODE_ENV !== 'production') {
-	mongoose.connect('mongodb://localhost/' + config.db_name);
+	mongoose.connect(devMongoURI);
 } else {
 	// We're using the MongoLab Heroku add-on. The add-ons ets a heroku config var that we use.
 	// Docs: https://devcenter.heroku.com/articles/mongolab
-	mongoose.connect(process.env["MONGODB_URI"]);
+	// Falls back to dev Mongo URI in case you are running the "prod" server locally.
+	mongoose.connect(process.env["MONGODB_URI"] || devMongoURI);
 }
 
 /* App setup */
@@ -40,7 +43,7 @@ if (process.env.NODE_ENV !== 'production') {
 	// Middleware that will intercept requests
 	const webpackDevMiddleware = require('webpack-dev-middleware');
 	// Our configuration file
-	const webpackConfig = require('../webpack.config.js');
+	const webpackConfig = require('../webpack.dev.config.js');
 
 	// Tell express to use webpack middleware to use webpack, configured by our file.
 	// Webpack middleware catches relevant requests

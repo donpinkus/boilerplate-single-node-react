@@ -1,6 +1,13 @@
+/*
+  The production configuration uses extract text plugin to create a separate CSS file.
+
+  Overkill to have a separate file just for one line, but typically dev and prod builds diverge a lot.
+*/
+
 var webpack = require('webpack');
 var path = require('path');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
   entry: {
@@ -32,34 +39,23 @@ module.exports = {
     { 
       // CSS is imported in app.js. 
       test: /\.scss$/,
-      use: ['style-loader', 'css-loader', 'sass-loader']
-      // Trying out extract text plugin
-      // use: ExtractTextPlugin.extract({
-      //   loader: 'css-loader',
-      //   options: {
-      //     sourceMap: true
-      //   }
-      // })
+      use: ExtractTextPlugin.extract({
+        fallbackLoader: 'style-loader',
+        loader: ["css-loader", "sass-loader"]
+      })
     }]
   },
   plugins: [
     // Define environment variables that are accessible inside of app javascript.
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
+      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+      'process.env.MONGODB_URI': JSON.stringify(process.env.MONGODB_URI)
     }),
     // Adds bundled file links to the index.html... I think.
     new HtmlWebpackPlugin({
       template: 'src/index.html',
       inject: true
-    })
+    }),
+    new ExtractTextPlugin("styles.css")
   ],
-  // TODO: This doesn't work, going to /signup while running dev will still result in a 404 instead of webpack-dev-server picking it up.
-  devServer: {
-    port: 3000,
-    historyApiFallback: {
-      index: 'index.html'
-    }
-  },
-  // TODO: This doesn't work, in Chrome we still see bundle.js errors.
-  devtool: "eval-source-map"
 };
