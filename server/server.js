@@ -13,7 +13,7 @@ if (process.env.NODE_ENV !== 'production') {
 } else {
 	// We're using the MongoLab Heroku add-on. The add-ons ets a heroku config var that we use.
 	// Docs: https://devcenter.heroku.com/articles/mongolab
-	mongoose.connect('mongodb://localhost/' + config.db_name);
+	mongoose.connect(process.env["MONGODB_URI"]);
 }
 
 /* App setup */
