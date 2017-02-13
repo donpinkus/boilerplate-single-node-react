@@ -23,6 +23,9 @@ Dev tools:
 1. Clone
 2. Run `$ npm i` to install dependencies
 
+If you are starting from a blank boilerplate project:
+3. Update config.js to have a secret & db_name for your project.
+
 ## Developing
 
 #### Development Server
