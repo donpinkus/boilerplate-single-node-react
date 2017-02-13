@@ -24,7 +24,8 @@ Dev tools:
 2. Run `$ npm i` to install dependencies
 
 If you are starting from a blank boilerplate project:
-3. Update config.js to have a secret & db_name for your project.
+
+3. Update config.js to have a secret & db_name for your project.  The first time you run the webserver, mongodb will create a 'db' with this name.
 
 ## Developing
 
