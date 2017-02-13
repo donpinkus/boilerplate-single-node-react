@@ -13,7 +13,7 @@ if (process.env.NODE_ENV !== 'production') {
 } else {
 	// We're using the MongoLab Heroku add-on. The add-ons ets a heroku config var that we use.
 	// Docs: https://devcenter.heroku.com/articles/mongolab
-	mongoose.connect(process.env["MONGODB_URI"]);
+	mongoose.connect('mongodb://localhost/' + config.db_name);
 }
 
 /* App setup */
@@ -52,7 +52,7 @@ if (process.env.NODE_ENV !== 'production') {
 	// Always respond with the index.html file.
 	// This will work correctly with react-router broswerHistory working correctly.
 	app.get('*', (req, res, next) => {
-		res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+		res.sendFile(path.join(__dirname, '../dist', 'index.html'));
 	});
 }
 
