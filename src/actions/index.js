@@ -2,7 +2,9 @@ import axios from 'axios';
 import { browserHistory } from 'react-router';
 import { AUTH_USER, UNAUTH_USER, AUTH_ERROR, FETCH_MESSAGE } from './types';
 
-const API_ROOT_URL = 'http://localhost:3000';
+// Right now API is served from the same domain, so no path is needed.
+// You can use this to namespace to "/api" even when using the same server.
+const API_ROOT_URL = '';
 
 export function signinUser({ email, password }) {
 	return function(dispatch) {
