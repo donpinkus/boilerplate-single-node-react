@@ -1,4 +1,5 @@
 // Hold application secrets and config
 module.exports = {
-	secret: 'oefkqekmvokmqe'
+	secret: 'oefkqekmvokmqe',
+	db_name: 'boilerplate'
 }

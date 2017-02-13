@@ -5,10 +5,11 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
 const apiRoutes = require('./router.js');
+const config = require('./config.js');
 
 /* DB setup */
 if (process.env.NODE_ENV !== 'production') {
-	mongoose.connect('mongodb://localhost/design-replays');
+	mongoose.connect('mongodb://localhost/' + config.db_name);
 } else {
 	// We're using the MongoLab Heroku add-on. The add-ons ets a heroku config var that we use.
 	// Docs: https://devcenter.heroku.com/articles/mongolab
